@@ -1,85 +1,51 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <Button :label="isDarkMode ? 'Modo Claro' : 'Modo Oscuro'" @click="toggleDarkMode" />
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
+<script setup>
+import { ref, onMounted } from 'vue';
+import Button from 'primevue/button'; // Importa el componente Button de PrimeVue
+import Card from 'primevue/card';
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
+// Variable reactiva para saber si estamos en modo oscuro
+const isDarkMode = ref(false);
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+// Función para alternar el modo oscuro
+const toggleDarkMode = () => {
+  const htmlElement = document.documentElement;
+  if (htmlElement.classList.contains('app-dark-mode')) {
+    htmlElement.classList.remove('app-dark-mode');
+    isDarkMode.value = false;
+  } else {
+    htmlElement.classList.add('app-dark-mode');
+    isDarkMode.value = true;
   }
+  // O de forma más concisa:
+  // htmlElement.classList.toggle('app-dark-mode');
+  // isDarkMode.value = htmlElement.classList.contains('app-dark-mode');
 
-  .logo {
-    margin: 0 2rem 0 0;
+  // Opcional: Guarda la preferencia en localStorage para que se recuerde
+  localStorage.setItem('theme-mode', isDarkMode.value ? 'dark' : 'light');
+};
+
+// Al cargar la aplicación, verifica la preferencia guardada o el sistema
+onMounted(() => {
+  const savedMode = localStorage.getItem('theme-mode');
+  if (savedMode === 'dark') {
+    document.documentElement.classList.add('app-dark-mode');
+    isDarkMode.value = true;
+  } else if (savedMode === 'light') {
+    document.documentElement.classList.remove('app-dark-mode');
+    isDarkMode.value = false;
+  } else {
+    // Si no hay preferencia guardada, usa la preferencia del sistema
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add('app-dark-mode');
+      isDarkMode.value = true;
+    }
   }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>
+});
+</script>
