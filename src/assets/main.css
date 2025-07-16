@@ -1,10 +1,10 @@
 @import './base.css';
+@import 'primeicons/primeicons.css';
 
 #app {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  font-weight: normal;
 }
 
 a,
@@ -32,4 +32,76 @@ a,
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }
+}
+
+/* Estilos para Header */
+.app-navbar {
+  position: fixed; /* Lo fija en la ventana del navegador */
+  top: 0;          /* Lo pega al borde superior */
+  left: 0;         /* Lo pega al borde izquierdo */
+  width: 100%;     /* Ocupa todo el ancho */
+  z-index: 1000;   /* Asegura que esté por encima de otros elementos */
+  background-color: var(--surface-card); /* Usa una variable de PrimeVue para el fondo */
+  padding: 1rem 2rem; /* Añade un poco de padding para que no se vea pegado al contenido */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+body {
+  padding-top: 60px; 
+}
+
+.navbar-title {
+    margin-right: 20px;
+    /* Espacio entre el título y los elementos del menú */
+    font-size: 1.5rem;
+    /* Tamaño de fuente más grande para el título */
+    font-weight: bold;
+    /* Negrita para el título */
+    color: var(--text-color);
+    /* Usa la variable de color de texto de PrimeVue */
+    white-space: nowrap;
+    /* Evita que el título se rompa en varias líneas */
+}
+
+.navbar-title h3 {
+    margin: 0;
+    /* Elimina el margen por defecto del h3 */
+    padding: 0;
+    /* Elimina el padding por defecto del h3 */
+    font-size: inherit;
+    /* Hereda el tamaño de fuente del padre .navbar-title */
+    color: inherit;
+    /* Hereda el color del padre .navbar-title */
+}
+
+.p-menubar {
+    padding: 1rem 1.5rem;
+    /* Ajusta el padding del menubar si lo necesitas */
+    border-radius: var(--border-radius);
+    /* Usa la variable de PrimeVue para bordes redondeados */
+    background-color: var(--surface-card);
+    /* Fondo del Menubar */
+    color: var(--text-color);
+    /* Color del texto del Menubar */
+}
+
+.p-button-rounded.p-button-text.p-button-secondary {
+    font-size: 1.25rem;
+    /* Ajusta el tamaño del icono si es necesario */
+    width: 2.5rem;
+    /* Ancho para que sea un círculo */
+    height: 2.5rem;
+    /* Alto para que sea un círculo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* color: var(--text-color-secondary); /* Color del icono */
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .navbar-title {
+        font-size: 1.2rem;
+        margin-right: 10px;
+    }
 }

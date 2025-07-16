@@ -1,3 +1,5 @@
+import './assets/main.css'
+
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
@@ -13,7 +15,7 @@ app.use(PrimeVue, {
     theme: {
         preset: Aura,
         options:{
-            darkModeSelector:'.app-dark-mode',
+            darkModeSelector:'.my-app-dark',
         }
     }
 });
