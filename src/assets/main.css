@@ -1,6 +1,5 @@
 @import './base.css';
 @import 'primeicons/primeicons.css';
-
 #app {
   max-width: 1280px;
   margin: 0 auto;
@@ -10,14 +9,14 @@
 a,
 .green {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: rgb(189, 145, 0);
   transition: 0.4s;
   padding: 3px;
 }
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    background-color: hsla(88, 56%, 70%, 0.2);
   }
 }
 
@@ -104,4 +103,13 @@ body {
         font-size: 1.2rem;
         margin-right: 10px;
     }
+}
+
+/* Select de idioma */
+.flex {
+    display: flex;
+}
+
+.align-items-center {
+    align-items: center; /* Para alinear verticalmente los elementos en el centro */
 }
