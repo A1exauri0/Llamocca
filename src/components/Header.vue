@@ -1,29 +1,29 @@
 <template>
-    <div class="card">
+    <div class="w-full">
         <Menubar :model="items">
             <!-- Slot 'start' para el título o logo -->
             <template #start>
-                <div class="navbar-title" style="margin-right: 2rem;">
-                    <h3>Maria Llamocca</h3>
+                <div class="mr-8">
+                    <h2 class="text-2xl  font-bold m-0">Maria Llamocca</h2>
                 </div>
             </template>
 
             <!-- Slot 'end' para el botón de modo oscuro con icono  -->
             <template #end>
-                <div class="flex align-items-center gap-2">
+                <div class="flex items-center gap-2">
                     <!-- Botón de PrimeVue con icono dinámico -->
-                    <Button :icon="darkModeIcon" class="p-button-rounded p-button-text p-button-secondary"
-                        @click="toggleDarkMode" aria-label="Toggle Dark Mode" style="margin-right: 1rem;" />
+                    <Button :icon="darkModeIcon" class="p-button-rounded p-button-text p-button-secondary mr-4"
+                        @click="toggleDarkMode" aria-label="Toggle Dark Mode" />
 
                     <!-- Selector de idioma -->
                     <Select v-model="selectedLanguage" :options="languageOptions" optionLabel="name" optionValue="code"
-                        @change="changeLanguage" class="w-8rem">
+                        @change="changeLanguage" class="w-32">
                         <!-- Mostrar opciones -->
                         <template #option="slotProps">
                             <div class="flex items-center gap-2">
                                 <img :src="`https://flagcdn.com/w20/${slotProps.option.flag}.png`"
                                     :alt="slotProps.option.name"
-                                    style="width: 20px; height: 15px; margin-right: 0.5rem; margin-top: 0.2rem;" />
+                                    class="w-5 h-4 mr-2 mt-1" />
                                 <span>{{ slotProps.option.name }}</span>
                             </div>
                         </template>
